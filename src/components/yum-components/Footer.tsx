@@ -1,11 +1,8 @@
-import { getTranslations } from 'next-intl/server'
-import LanguageDropdown from './language/LanguageDropdown'
-
 const navigation = {
   main: [
-    { textKey: 'privacyPolicy', href: '/privacy-policy' },
-    { textKey: 'termsOfService', href: '/terms-of-service' },
-    { textKey: 'faq', href: '/frequently-asked-questions' },
+    { text: 'Datenschutz', href: '/datenschutz' },
+    { text: 'AGB', href: '/agb' },
+    { text: 'FAQ', href: '/faq' },
   ],
   /*
   social: [
@@ -74,8 +71,6 @@ const navigation = {
 }
 
 export default async function Footer() {
-  const t = await getTranslations('Footer')
-
   return (
     <footer className="">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
@@ -87,8 +82,6 @@ export default async function Footer() {
           ))}
         </nav>
         <div className="mt-16 flex justify-center gap-x-10">
-          <LanguageDropdown />
-
           {/*navigation.social.map((item) => (
             <a key={item.name} href={item.href} className="text-gray-400 hover:text-white">
               <span className="sr-only">{item.name}</span>

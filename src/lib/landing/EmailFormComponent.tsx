@@ -8,12 +8,9 @@ import { ACTION_ERROR, ACTION_OK, ACTION_VALIDATION_ERROR } from '@/lib/Constant
 import { addEmail } from '@/lib/landing/ServerActions'
 import { CheckIcon, XMarkIcon } from '@heroicons/react/16/solid'
 import clsx from 'clsx'
-import { useTranslations } from 'next-intl'
 import { useActionState, useEffect, useState } from 'react'
 
 export default function EmailFormComponent({ className }: { className?: string }) {
-  const t = useTranslations('LandingPage')
-
   const [email, setEmail] = useState('')
   const [validationError, setValidationError] = useState('')
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
@@ -49,9 +46,9 @@ export default function EmailFormComponent({ className }: { className?: string }
             type="email"
             aria-label="Email"
             name="email"
-            placeholder={t('CTA.placeholder')}
+            placeholder="E-Mail-Adresse eingeben"
             value={email}
-            onChange={(e) => {
+            onChange={(e: any) => {
               setValidationError('')
               setEmail(e.target.value)
             }}
@@ -62,7 +59,7 @@ export default function EmailFormComponent({ className }: { className?: string }
         </Field>
 
         <Button type="submit" disabled={pending} color="teal" className="cursor-pointer">
-          {pending ? t('CTA.pending') : t('CTA.button')}
+          {pending ? 'Wird gesendet...' : 'Frühzeitigen Zugang erhalten'}
         </Button>
       </form>
       <SuccessModal open={openSuccessModal} setOpen={setOpenSuccessModal} />
@@ -72,34 +69,30 @@ export default function EmailFormComponent({ className }: { className?: string }
 }
 
 function SuccessModal({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
-  const t = useTranslations('LandingPage.SuccessModal')
-
   return (
     <Dialog open={open} onClose={setOpen}>
       <DialogTitle>
         <CheckIcon aria-hidden="true" className="size-6 text-green-600" />
-        {t('title')}
+        Erfolg!
       </DialogTitle>
-      <DialogDescription>{t('description')}</DialogDescription>
+      <DialogDescription>Vielen Dank, dass Sie sich in die Warteliste eingetragen haben!! Wir werden Sie benachrichtigen, sobald Sie auf YumAlarm zugreifen können.</DialogDescription>
       <DialogActions>
-        <Button onClick={() => setOpen(false)}>{t('button')}</Button>
+        <Button onClick={() => setOpen(false)}>Zurück</Button>
       </DialogActions>
     </Dialog>
   )
 }
 
 function FailureModal({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
-  const t = useTranslations('LandingPage.FailureModal')
-
   return (
     <Dialog open={open} onClose={setOpen}>
       <DialogTitle>
         <XMarkIcon aria-hidden="true" className="size-6 text-red-600" />
-        {t('title')}
+        Fehler!
       </DialogTitle>
-      <DialogDescription>{t('description')}</DialogDescription>
+      <DialogDescription>Etwas ist schiefgelaufen, bitte versuchen Sie es erneut. Falls das Problem weiterhin besteht, kontaktieren Sie bitte den Support.</DialogDescription>
       <DialogActions>
-        <Button onClick={() => setOpen(false)}>{t('button')}</Button>
+        <Button onClick={() => setOpen(false)}>Zurück</Button>
       </DialogActions>
     </Dialog>
   )
