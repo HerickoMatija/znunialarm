@@ -1,0 +1,15 @@
+{
+  "globals": {
+    "appName": "znunialarm",
+    "env": {
+      "account": "058264551596",
+      "region": "eu-central-1"
+    }
+  },
+  "main": {
+    "stage": "prod"
+  },
+  "test": {
+    "stage": "test"
+  }
+}

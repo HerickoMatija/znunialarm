@@ -1,0 +1,13 @@
+{
+  "yumalarm-test-stack": {
+    "cognitoIdentityPoolID": "eu-central-1:627f15e0-6846-4b36-9ee0-4cfd346b6628",
+    "yumalarmtestrestApiEndpoint032240B3": "https://crjo7lhdc9.execute-api.eu-central-1.amazonaws.com/test/",
+    "lambdaStripeWebhookURL": "https://46dgd67x36ukp4dxugc5mf5anq0gtfbd.lambda-url.eu-central-1.on.aws/",
+    "cognitoUserPoolWebClientID": "pivj9g183qh547devd4qpp9d9",
+    "restApiID": "crjo7lhdc9",
+    "appsyncAuthenticationType": "userPool",
+    "region": "eu-central-1",
+    "restApiURL": "https://crjo7lhdc9.execute-api.eu-central-1.amazonaws.com/test/",
+    "cognitoUserPoolID": "eu-central-1_I5wWERV8j"
+  }
+}

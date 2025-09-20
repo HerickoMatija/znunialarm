@@ -1,0 +1,11 @@
+{
+  "name": "yumalarmlambda",
+  "version": "1.0.0",
+  "description": "Lambda function handle all yumalarm item endpoints",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "winston": "^3.9.0",
+    "yumalarmlambda": "file:"
+  }
+}

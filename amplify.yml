@@ -1,0 +1,27 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd cdk
+        - npm ci
+        - npm run build
+        - cd ../../api/updateEmail
+        - npm ci
+        - cd ../yumalarm
+        - cd ../feedback
+        - npm ci
+        - cd ../landing
+        - npm ci
+        - cd ../../..
+        - npx aws-cdk diff
+        - npx aws-cdk deploy --outputs-file ../src/output.json --require-approval never
+        - cd ..
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
