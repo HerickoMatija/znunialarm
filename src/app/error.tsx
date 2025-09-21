@@ -4,13 +4,6 @@ import { Button } from '@/components/catalyst/button';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  /*
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
-  */
-
   return (
     <div className="flex-1">
       <div className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
