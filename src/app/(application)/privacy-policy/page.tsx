@@ -1,7 +1,5 @@
 import clsx from 'clsx'
 import { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
-import { cache } from 'react'
 
 type PrivacyPolicyItem = {
   title?: string | null
@@ -185,62 +183,54 @@ const items: PrivacyPolicyItem[] = [
   },
 ]
 
-const getMessages = cache(async () => {
-  return await getTranslations('PrivacyPolicyPage')
-})
-
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getMessages()
-
   return {
-    title: t('title'),
+    title: 'Datenschutzerklärung',
   }
 }
 
 export default async function PrivacyPolicyPage() {
-  const t = await getMessages()
-
   return (
     <div className="mx-auto max-w-4xl text-base leading-7">
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{t('title')}</h1>
-      <p className="text-base font-semibold leading-7">{t('version')}</p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Datenschutzerklärung</h1>
+      <p className="text-base font-semibold leading-7">Letzte Aktualisierung: August 2023</p>
       {items.map((item, index) => {
-        return renderItem(item, t, index.toString())
+        return renderItem(item, index.toString())
       })}
     </div>
   )
 }
 
-function renderItem(item: PrivacyPolicyItem, t: any, key: string) {
+function renderItem(item: PrivacyPolicyItem, key: string) {
   return (
     <div key={key}>
-      {item.title && <h2 className="mt-6 text-2xl font-bold tracking-tight">{t(item.title)}</h2>}
+      {item.title && <h2 className="mt-6 text-2xl font-bold tracking-tight">{item.title}</h2>}
       {item.sections.map((section, index) => {
-        return renderSection(section, t, key + '-' + index)
+        return renderSection(section, key + '-' + index)
       })}
     </div>
   )
 }
 
-function renderSection(section: PrivacyPolicySection, t: any, key: string) {
+function renderSection(section: PrivacyPolicySection, key: string) {
   return (
     <div key={key}>
-      {section.title && <h3 className="mt-6 text-xl font-bold tracking-tight">{t(section.title)}</h3>}
+      {section.title && <h3 className="mt-6 text-xl font-bold tracking-tight">{section.title}</h3>}
       {section.content.map((content, index) => {
-        return renderContent(content, index, t, key + '-' + index)
+        return renderContent(content, index, key + '-' + index)
       })}
     </div>
   )
 }
 
-function renderContent(content: PrivacyPolicyContent, idx: number, t: any, key: string) {
+function renderContent(content: PrivacyPolicyContent, idx: number, key: string) {
   if (content.type === 'list') {
     return (
       <ul className={clsx('ml-4 mt-2 space-y-4', content.noDots ? '' : 'list-disc')} key={key}>
         {content.keys?.map((listKey, index) => {
           return (
             <li className="gap-x-3" key={key + '-' + index}>
-              <span>{t.rich(listKey, content.richMappingFunc)}</span>
+              <span>{listKey}</span>
             </li>
           )
         })}
@@ -250,13 +240,13 @@ function renderContent(content: PrivacyPolicyContent, idx: number, t: any, key: 
     if (idx === 0) {
       return (
         <p className="mt-6 leading-8" key={key}>
-          {t(content.key)}
+          {content.key}
         </p>
       )
     } else {
       return (
         <p className="mt-2 leading-8" key={key}>
-          {t(content.key)}
+          {content.key}
         </p>
       )
     }
